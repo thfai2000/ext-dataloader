@@ -30,12 +30,12 @@ class DataWithFieldsLoader extends DataLoader {
       return result
     }
 
-    let resolvedKey = options.cacheKeyFn && options.cacheKeyFn(info.key)
-    let actualCacheKeyFn = info => {
-      let key = `${resolvedKey || info.key}#${info.fields.join(',')}`
+    const actualCacheKeyFn = (info) => {
+      const resolvedKey = options.cacheKeyFn && options.cacheKeyFn(info.key);
+      const key = `${resolvedKey || info.key}#${info.fields.join(',')}`;
       // console.debug(`resolved key: ${key}`)
-      return key
-    }
+      return key;
+    };
 
     super(actualBatchLoadFn, {
       ...options,
